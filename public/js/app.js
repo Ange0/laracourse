@@ -4253,6 +4253,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -32866,10 +32872,32 @@ var render = function() {
     [
       _vm._v(" "),
       _vm._l(this.courselist, function(course) {
-        return _c("div", { key: course.id }, [
-          _c("h2", [_vm._v(" " + _vm._s(course.title))]),
-          _vm._v(" "),
-          _c("p", [_vm._v(" " + _vm._s(course.description))])
+        return _c("div", { key: course.id, staticClass: "py-4" }, [
+          _c("div", { staticClass: "mx-8 bg-white rounded shadow p-4" }, [
+            _c("div", { staticClass: "flex justify-between items-center" }, [
+              _c("div", { staticClass: "text-xl" }, [
+                _vm._v(" " + _vm._s(course.title))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-sm text-gray-200" }, [
+                _vm._v("25 episodes")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-sm text-gray-500" }, [
+              _vm._v(" " + _vm._s(course.description))
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass:
+                  "bg-indigo-500 text-white px-2 py-1 hover:bg-indigo-700 my-1 inline-block",
+                attrs: { href: "#" }
+              },
+              [_vm._v("Voir la formation")]
+            )
+          ])
         ])
       }),
       _vm._v("\n    Coucou  toto\n")
