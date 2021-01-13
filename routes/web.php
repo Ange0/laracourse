@@ -23,9 +23,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
 Route::get('/courses','App\Http\Controllers\CoursesController@index')->name('courses.index');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::group(['auth:sanctum', 'verified'],function() {
+    Route::get('/course/{id}','App\Http\Controllers\CoursesController@show')->name('courses.show');
+    Route::get('/dashboard','App\Http\Controllers\CoursesController@dashboard')->name('dashboard');
+});
