@@ -14,7 +14,7 @@
                             Episode n° {{ index + 1 }} - {{ episode.title }} 
                             <button class="text-gray-500 focus:text-indigo-500 focus:outline-none" @click="switchEpisode(index)">Voir</button>
                         </div>
-                         <progress-button />
+                         <progress-button :episode-id = "episode.id" :watched-episodes = "watched" />
                      </li>
                    
                 </ul>
@@ -24,11 +24,11 @@
 </template>
 <script>
 import AppLayout from './../../Layouts/AppLayout';
-import ProgressButton from './ProgressButton';
+import ProgressButton from './progressButton';
 
 export default {
   components: { AppLayout,ProgressButton},
-  props: ['course'],
+  props: ['course','watched'],
   data(){
       return{
           courseShow: this.course,
