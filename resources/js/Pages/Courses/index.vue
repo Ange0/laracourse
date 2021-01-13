@@ -11,7 +11,7 @@
                     <div class="text-sm text-gray-200" >{{ course.episodes_count }}</div>
                </div>
                 <div class="text-sm text-gray-500"> {{ course.description}}</div>
-                <a :href="'course/' + course.id" class="bg-indigo-500 text-white px-2 py-1 hover:bg-indigo-700 my-1 inline-block">Voir la formation</a>
+                <a :href="route('courses.show',course.id)" class="bg-indigo-500 text-white px-2 py-1 hover:bg-indigo-700 my-1 inline-block">Voir la formation</a>
             </div>
         </div>
     </app-layout>

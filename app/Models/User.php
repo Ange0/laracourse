@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -59,7 +60,16 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // relation père fils
     public function courses(){
         return $this->hasMany(Course::class);
     }
+
+    // relation  plusieurs à plusieurs
+    public function episodes(){ // ex: un user peut terminer une ou plusieurs episodes
+
+        return $this->belongsTo(Episode::class,'completions','user_id','episode_id'); // 1er le nom du modèle 2e  nom de table (relation),3 le champ user_id(cle etrangere), 4 le champ episode_id(cle local) NB/ LA RELATION COMPLETIONS EST DEVENUE UNE TABLE
+    }
+
+
 }
