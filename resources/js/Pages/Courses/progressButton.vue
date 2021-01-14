@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import ResponsiveNavLinkVue from '../../Jetstream/ResponsiveNavLink.vue';
     export default {
         props: ['episodeId','watchedEpisodes'],
         data(){
@@ -22,6 +23,7 @@
                 .then(response => {
                     if(response.status === 200){
                         this.isWatched = !this.isWatched
+                        eventBus.$emit('toggleProgress',response.data)  // on emet l'evement ici
                     }
                 })
                 .catch(error => console.error(error));

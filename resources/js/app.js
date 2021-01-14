@@ -11,6 +11,9 @@ Vue.use(PortalVue);
 
 const app = document.getElementById('app');
 
+window.eventBus = new Vue(); // accessible dans tous mes composants pour emettre les evenements
+
+
 new Vue({
     render: (h) =>
         h(InertiaApp, {

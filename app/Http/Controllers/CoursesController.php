@@ -24,14 +24,14 @@ class CoursesController extends Controller
                 ) AS participants'
             ))
             ->withCount('episodes')->latest()->get();
-        return Inertia::render('Courses/index',compact('courses'));
+        return Inertia::render('Courses/Index',compact('courses'));
     }
 
     public function show(int $id)
     {
         $watched = auth()->user()->episodes;
         $course = Course::where('id',$id)->with('episodes')->first();
-        return Inertia::render('Courses/show',['course' => $course,'watched' => $watched]);
+        return Inertia::render('Courses/Show',['course' => $course,'watched' => $watched]);
     }
 
     public function toggleProgress(Request $request)
