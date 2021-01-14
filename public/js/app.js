@@ -33143,7 +33143,13 @@ var render = function() {
         return _c("div", { key: course.id, staticClass: "py-4" }, [
           _c("div", { staticClass: "mx-8 bg-white rounded shadow p-4" }, [
             _c("div", { staticClass: "text-sm text-gray-500" }, [
-              _vm._v("Mise en ligne par " + _vm._s(course.user.name))
+              _vm._v("Mise en ligne par " + _vm._s(course.user.name) + " - "),
+              _c("span", { staticClass: "text-sm text-gray-500" }, [
+                _vm._v(_vm._s(course.participants) + " Participant"),
+                parseInt(course.participants) > 1
+                  ? _c("span", [_vm._v("s")])
+                  : _vm._e()
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "flex justify-between items-center" }, [
