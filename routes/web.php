@@ -27,6 +27,8 @@ Route::get('/courses','App\Http\Controllers\CoursesController@index')->name('cou
 Route::group(['auth:sanctum', 'verified'],function() {
     Route::get('/course/{id}','App\Http\Controllers\CoursesController@show')->name('courses.show');
     Route::post('/toggleProgress','App\Http\Controllers\CoursesController@toggleProgress')->name('courses.toggleProgress');
-
+    Route::post('/store','App\Http\Controllers\CoursesController@store')->name('courses.store');
+    Route::get('/course/edit/{id}','App\Http\Controllers\CoursesController@edit')->name('courses.edit');
+    Route::patch('/course/update/{id}','App\Http\Controllers\CoursesController@update')->name('courses.update');
     Route::get('/dashboard','App\Http\Controllers\CoursesController@dashboard')->name('dashboard');
 });

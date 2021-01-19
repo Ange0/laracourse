@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Course' => 'App\Policies\CoursePolicy',
     ];
 
     /**
@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // utiliser dans les vues (tu as le droit de mettre à jour si course->user_id = user->id) / alors que policy est utiliser dans les controlleur
+        Gate::define('update-course', function ($course){
+            return $course->user_id === auth()->user()->id;
+        });
     }
 }
