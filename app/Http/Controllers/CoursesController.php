@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Episode;
+use App\Youtube\YoutubeService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -17,6 +19,7 @@ class CoursesController extends Controller
         return Inertia::render('Dashboard');
     }
     public function index(){
+
         $courses = Course::with('user')
             ->select('courses.*',DB::raw(
                 '(SELECT COUNT(DISTINCT(user_id))
@@ -24,6 +27,12 @@ class CoursesController extends Controller
                 INNER JOIN episodes ON completions.episode_id = episodes.id
                 WHERE episodes.course_id = courses.id
                 ) AS participants'
+            ))->addSelect(DB::raw(
+                '(
+                    SELECT SUM(duration) 
+                    FROM episodes
+                    WHERE episodes.course_id=courses.id
+                ) AS total_duration'
             ))
             ->withCount('episodes')->latest()->get();
         return Inertia::render('Courses/Index',compact('courses'));
@@ -43,8 +52,9 @@ class CoursesController extends Controller
         $user->episodes()->toggle($id);
         return $user->episodes;
     }
-    public function store(Request $request)
+    public function store(Request $request,YoutubeService $yts)
     {
+     /*    
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -56,10 +66,13 @@ class CoursesController extends Controller
 
         ]);
 
-       $course =  Course::create($request->all());
+
+       $course =  Course::create($request->all()); */
 
         foreach ($request->input('episodes') as $episode) {
-            $episode['course_id'] = $course->id; // je creer une variable course_id à la volé
+
+            /* $episode['course_id'] = $course->id;  */// je creer une variable course_id à la volé
+            $episode['duration'] = $yts->videoDuration($episode['video_url']);
             Episode::create($episode);
         }
 

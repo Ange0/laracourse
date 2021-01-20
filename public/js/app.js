@@ -4300,6 +4300,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -33640,7 +33641,11 @@ var render = function() {
         return _c("div", { key: course.id, staticClass: "py-4" }, [
           _c("div", { staticClass: "mx-8 bg-white rounded shadow p-4" }, [
             _c("div", { staticClass: "text-sm text-gray-500" }, [
-              _vm._v("Mise en ligne par " + _vm._s(course.user.name) + " - "),
+              _vm._v(
+                "Mise en ligne par " +
+                  _vm._s(course.user.name ? course.user.name : "") +
+                  " - "
+              ),
               _c("span", { staticClass: "text-sm text-gray-500" }, [
                 _vm._v(_vm._s(course.participants) + " Participant"),
                 parseInt(course.participants) > 1
@@ -33654,7 +33659,11 @@ var render = function() {
                 _vm._v(" " + _vm._s(course.title))
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "text-sm text-gray-200" }, [
+              _c("span", { staticClass: "font-semibold text-gray-500" }, [
+                _vm._v(_vm._s(course.total_duration) + " s")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-sm text-gray-400" }, [
                 _vm._v(_vm._s(course.episodes_count))
               ])
             ]),
