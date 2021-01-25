@@ -26,6 +26,13 @@
                                     Home
                                 </jet-nav-link>
                             </div>
+                            <div>
+                                <ul class="list-none md:list-disc">
+                                    <li><a href="#">Francais</a> </li>
+                                    <li><a href="#">Anglais</a> </li>
+                                  
+                                </ul>
+                            </div>
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
