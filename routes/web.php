@@ -30,5 +30,5 @@ Route::group(['auth:sanctum', 'verified'],function() {
     Route::post('/store','App\Http\Controllers\CoursesController@store')->name('courses.store');
     Route::get('/course/edit/{id}','App\Http\Controllers\CoursesController@edit')->name('courses.edit');
     Route::patch('/course/update/{id}','App\Http\Controllers\CoursesController@update')->name('courses.update');
-    Route::get('/dashboard','App\Http\Controllers\CoursesController@dashboard')->name('dashboard');
+    Route::get('/create','App\Http\Controllers\CoursesController@create')->name('courses.create');
 });

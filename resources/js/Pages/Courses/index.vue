@@ -12,7 +12,7 @@
                <div class="text-sm text-gray-500" >Mise en ligne par {{ (course.user.name) ?  course.user.name :  '' }} - <span class="text-sm text-gray-500">{{ course.participants}} Participant<span v-if=" parseInt(course.participants ) > 1">s</span></span></div>
                <div class="flex justify-between items-center">
                     <div class="text-xl"> {{ course.title}}</div>
-                    <span class="font-semibold text-gray-500">{{ course.total_duration }} s</span>
+                    <span class="font-semibold text-gray-500">{{ convert(course.total_duration ) }}</span>
                     <div class="text-sm text-gray-400" >{{ course.episodes_count }}</div>
                </div>
                 <div class="text-sm text-gray-500"> {{ course.description}}</div>
@@ -35,6 +35,18 @@ export default {
   },
   mounted(){
       console.log(this.courselist);
+  },
+  methods:
+  {
+      convert(timestamp)
+      {
+          let hours = Math.floor(timestamp / 3600);
+          let minutes =  Math.floor((timestamp/60) - (hours * 60));
+          let seconds =  timestamp % 60;
+
+          return hours.toString().padStart(2,0) + ':' + minutes.toString().padStart(2,0) + ':' + seconds.toString().padStart(2,0);
+
+      }
   }
 
 }

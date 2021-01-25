@@ -14,9 +14,9 @@ use Inertia\Inertia;
 
 class CoursesController extends Controller
 {
-    public function dashboard()
+    public function create()
     {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Courses/Create');
     }
     public function index(){
 
@@ -54,7 +54,7 @@ class CoursesController extends Controller
     }
     public function store(Request $request,YoutubeService $yts)
     {
-     /*    
+        
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -67,11 +67,11 @@ class CoursesController extends Controller
         ]);
 
 
-       $course =  Course::create($request->all()); */
+       $course =  Course::create($request->all());
 
         foreach ($request->input('episodes') as $episode) {
 
-            /* $episode['course_id'] = $course->id;  */// je creer une variable course_id à la volé
+            $episode['course_id'] = $course->id;  // je creer une variable course_id à la volé
             $episode['duration'] = $yts->videoDuration($episode['video_url']);
             Episode::create($episode);
         }
@@ -85,7 +85,7 @@ class CoursesController extends Controller
         $this->authorize('update',$course);// gere l'autorisation grace au policy
         return Inertia::render('Courses/Edit',compact('course'));
     }
-    public function update(Request $request)
+    public function update(Request $request,YoutubeService $yts)
     {
         
          
@@ -106,7 +106,9 @@ class CoursesController extends Controller
         $course->episodes()->delete();
 
         foreach ($request->episodes as $episode) {
+            
             $episode['course_id'] = $course->id; // je creer une variable course_id à la volé
+            $episode['duration'] = $yts->videoDuration($episode['video_url']);
             Episode::create($episode);
         }
         return Redirect::route('courses.index')->with('success','Felicitation votre formation à bien été modifiée');
