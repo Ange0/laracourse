@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -40,6 +41,10 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => fn () => $request->session()->get('success')
             ],
+            'lang' => [
+                'getSupportedLocales' => fn() => LaravelLocalization::getSupportedLocales(),
+                /* 'getLocalizedURL' => fn($localeCode) => LaravelLocalization::getLocalizedURL($localeCode, null, [], true) */
+            ]
         ]);
     }
 }

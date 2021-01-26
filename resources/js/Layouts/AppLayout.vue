@@ -27,11 +27,12 @@
                                 </jet-nav-link>
                             </div>
                             <div>
-                                <ul class="list-none md:list-disc">
-                                    <li><a href="#">Francais</a> </li>
-                                    <li><a href="#">Anglais</a> </li>
-                                  
-                                </ul>
+                                <a @click="setLocale('en')">
+                                    <flag iso="us"></flag>
+                                </a>
+                                <a @click="setLocale('fr')">
+                                    <flag iso="fr"></flag>
+                                </a>
                             </div>
                         </div>
 
@@ -270,7 +271,8 @@
         },
 
         methods: {
-            switchToTeam(team) {
+            switchToTeam(team) 
+            {
                 this.$inertia.put(route('current-team.update'), {
                     'team_id': team.id
                 }, {
@@ -278,9 +280,17 @@
                 })
             },
 
-            logout() {
+            logout() 
+            {
                 this.$inertia.post(route('logout'));
             },
-        }
+            setLocale(locale)
+            {
+                console.log(locale);
+                this.$i18n.locale = locale;
+            }
+        },
+       
+   
     }
 </script>

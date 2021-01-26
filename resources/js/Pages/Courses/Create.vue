@@ -15,11 +15,12 @@
             <div class="md:col-span-1">
               <div class="px-4 sm:px-0">
                 <h3 class="text-lg font-medium leading-6 text-gray-900">
-                  Formation
+                 {{ __('messages.training') }}
                 </h3>
                 <p class="mt-1 text-sm text-gray-600">
-                  creation d'une formation
+                  {{ $t('createTraining')}}
                 </p>
+                <button type="button" class="btn btn-info">Info</button>
               </div>
             </div>
             <div class="mt-5 md:mt-0 md:col-span-2">
@@ -109,6 +110,9 @@
 </template>
 <script>
 import AppLayout from "@/Layouts/AppLayout";
+
+
+
 export default {
   components: {
     AppLayout,
@@ -138,7 +142,9 @@ export default {
     {
       
        this.form.episodes.pop();
-    }
+    },
+  
   },
+
 };
 </script>

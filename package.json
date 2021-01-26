@@ -16,6 +16,7 @@
         "@tailwindcss/typography": "^0.3.0",
         "autoprefixer": "^10.0.2",
         "axios": "^0.21",
+        "lang.js": "^1.1.14",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "portal-vue": "^2.1.7",
@@ -24,6 +25,11 @@
         "tailwindcss": "^2.0.1",
         "vue": "^2.5.17",
         "vue-loader": "^15.9.6",
-        "vue-template-compiler": "^2.6.10"
+        "vue-template-compiler": "^2.6.10",
+        "webpack-shell-plugin": "^0.5.0"
+    },
+    "dependencies": {
+        "vue-flag-icon": "^1.0.6",
+        "vue-i18n": "^8.22.4"
     }
 }
